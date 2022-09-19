@@ -25,20 +25,20 @@ def align(x: str, y: str, edits: str) -> tuple[str, str]:
     i = 0
     j = 0
 
-    for _ in edits:
+    for ed in edits:
 
-        if _ == 'M':
+        if ed == 'M':
             x_align += x[i]
             y_align += y[j]
             i += 1
             j += 1
 
-        elif _ == 'I':
+        elif ed == 'I':
             x_align += '-'
             y_align += y[j]
             j += 1
             
-        elif _ == 'D':
+        elif ed == 'D':
             y_align += '-'
             x_align += x[i]
             i += 1
@@ -62,19 +62,18 @@ def edits(x: str, y: str) -> str:
     """
     edits = ''
     
-    for _ in range(len(x)):
-        print(_)
+    for i in range(len(x)):
 
-        if x[_] in 'ATGC' and y[_] in 'ATGC':
+        if x[i] in 'ATGC' and y[i] in 'ATGC':
             edits += 'M'
 
-        elif x[_] == '-':
+        elif x[i] == '-':
             edits += 'I'
 
-        elif y[_] == '-':
+        elif y[i] == '-':
             edits += 'D'
 
     return edits
 
-print(align("ACCACAGTCATA", "ACAGAGTACAAA", "MDMMMMMMIMMMM"))
-print(edits('ACCACAGT-CATA', 'A-CAGAGTACAAA'))
+# print(align("ACCACAGTCATA", "ACAGAGTACAAA", "MDMMMMMMIMMMM"))
+# print(edits('ACCACAGT-CATA', 'A-CAGAGTACAAA'))

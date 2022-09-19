@@ -17,7 +17,8 @@ def split_pairs(cigar: str) -> list[tuple[int, str]]:
     [(1, 'M'), (1, 'D'), (6, 'M'), (1, 'I'), (4, 'M')]
 
     """
-    return [(int(i), op) for i, op in re.findall(r"(\d+)([^\d]+)", cigar)]
+    return [(int(i), op) for i, op in re.findall(r"(\d+)([^\d]+)", cigar)] # re checks if a particular string matches
+    # a given regular expression
 
 
 def cigar_to_edits(cigar: str) -> str:
@@ -33,7 +34,14 @@ def cigar_to_edits(cigar: str) -> str:
     'MDMMMMMMIMMMM'
 
     """
-    return ""
+
+    edits = ''
+    pairs = split_pairs(cigar)
+
+    for tuple in pairs:
+        edits += tuple[0]*tuple[1]
+
+    return edits
 
 
 def split_blocks(x: str) -> list[str]:
@@ -65,4 +73,18 @@ def edits_to_cigar(edits: str) -> str:
     '1M1D6M1I4M'
 
     """
-    return ""
+
+    cigar = ''
+    blocks = split_blocks(edits)
+
+    for b in blocks:
+        cigar + str(len(b)) + b[0]
+
+    return cigar
+
+
+# print(split_pairs("1M1D6M1I4M"))
+
+# print(cigar_to_edits("1M1D6M1I4M"))
+
+# print(edits_to_cigar('MDMMMMMMIMMMM'))
