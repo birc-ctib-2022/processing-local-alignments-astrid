@@ -78,7 +78,7 @@ def edits_to_cigar(edits: str) -> str:
     blocks = split_blocks(edits)
 
     for b in blocks:
-        cigar + str(len(b)) + b[0]
+        cigar += str(len(b)) + b[0]
 
     return cigar
 
@@ -87,4 +87,4 @@ def edits_to_cigar(edits: str) -> str:
 
 # print(cigar_to_edits("1M1D6M1I4M"))
 
-# print(edits_to_cigar('MDMMMMMMIMMMM'))
+print(edits_to_cigar('MDMMMMMMIMMMM'))
