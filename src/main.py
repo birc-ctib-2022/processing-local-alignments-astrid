@@ -94,8 +94,11 @@ def to_cig_cmd(infile, outfile) -> None:
     """Run the to_cig subcommand."""
     for line in infile:
         x = line.strip()
+        # next() returns next item in iterator. Second line is the second DNA strand.
         y = next(infile).strip()
+        # third line is empty
         _ = next(infile)
+        # program cigar, function edits_to_cigar, program align, function edits
         cig = cigar.edits_to_cigar(align.edits(x, y))
         print(x.replace('-', ''),
               y.replace('-', ''),
@@ -140,12 +143,15 @@ if __name__ == '__main__':
             pass
         case 3:
             # one file argument
-            print("Feature not implemented.", file=sys.stderr)
-            sys.exit(1)
+            # print("Feature not implemented.", file=sys.stderr)
+            # sys.exit(1)
+            infile = open(sys.argv[2], 'r')
         case 4:
             # two file arguments
-            print("Feature not implemented.", file=sys.stderr)
-            sys.exit(1)
+            # print("Feature not implemented.", file=sys.stderr)
+            # sys.exit(1)
+            infile = open(sys.argv[2])
+            outfile = open(sys.argv[3], 'w')
         case _:
             # either too few or too many arguments
             print("Incorrect number of arguments.", file=sys.stderr)

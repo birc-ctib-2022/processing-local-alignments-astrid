@@ -87,4 +87,4 @@ def edits_to_cigar(edits: str) -> str:
 
 # print(cigar_to_edits("1M1D6M1I4M"))
 
-print(edits_to_cigar('MDMMMMMMIMMMM'))
+# print(edits_to_cigar('MDMMMMMMIMMMM'))
