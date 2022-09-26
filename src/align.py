@@ -64,7 +64,7 @@ def edits(x: str, y: str) -> str:
     
     for i in range(len(x)):
 
-        if x[i] in 'ATGCatgc' and y[i] in 'ATGCatgc':
+        if x[i] != '-' and y[i] != '-':
             edits += 'M'
 
         elif x[i] == '-':
